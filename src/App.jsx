@@ -631,7 +631,7 @@ const Hero = () => {
           <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-all duration-700 bg-gray-100 relative">
             {/* Hero: autoplaying video (muted, loop) with poster fallback */}
             <video poster="/BlockValley_Logo_FullText.png" autoPlay muted loop playsInline className="w-full h-full object-cover relative z-10">
-              <source src="/BlockValleyVideo.mp4" type="video/mp4" />
+              <source src="/IMG_4443.MP4" type="video/mp4" />
               {/* Fallback image */}
               <img src="/BlockValley_Logo_FullText.png" alt="Block Valley Banner" className="w-full h-full object-cover" />
             </video>
