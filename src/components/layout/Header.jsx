@@ -30,14 +30,25 @@ const Header = () => {
                         } rounded-full px-2 py-2 flex items-center justify-between mx-auto md:px-3`}
                 >
                     {/* Logo - Text or Icon */}
+                    {/* Logo - Switch between Full and Icon based on scroll */}
+                    {/* Logo - Switch between Full and Icon based on scroll */}
                     <div
-                        className="pl-4 md:pl-6 cursor-pointer flex items-center gap-2 group"
+                        className="pl-4 md:pl-6 cursor-pointer relative h-14 flex items-center"
                         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     >
-                        <img src="/BlockValleyLogoCut.png" alt="Block Valley Logo" className="w-8 h-8 object-contain animate-spin-slow group-hover:scale-110 transition-transform duration-500" />
-                        <span className={`font-display font-bold tracking-tight text-lg ml-2 overflow-hidden whitespace-nowrap transition-all duration-500 ease-in-out ${scrolled ? 'w-0 opacity-0' : 'w-auto opacity-100 text-bv-primary'}`}>
-                            Block Valley
-                        </span>
+                        {/* Full Logo (Visible when NOT scrolled) */}
+                        <img
+                            src="/BlockValley_Logo_Dark.png"
+                            alt="Block Valley"
+                            className={`h-10 w-auto object-contain transition-all duration-300 origin-left ${scrolled ? 'opacity-0 scale-75 w-0 pointer-events-none absolute' : 'opacity-100 scale-100 relative'}`}
+                        />
+
+                        {/* Icon Logo (Visible when scrolled) */}
+                        <img
+                            src="/BlockValleyLogoCut.png"
+                            alt="BV Icon"
+                            className={`h-12 w-12 object-contain transition-all duration-300 ${scrolled ? 'opacity-100 scale-100 relative' : 'opacity-0 scale-50 w-0 pointer-events-none absolute'}`}
+                        />
                     </div>
 
                     {/* Desktop Nav Pills */}
