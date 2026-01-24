@@ -1,3 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html {
+        @apply bg-bv-background text-bv-text font-sans;
+    }
+
+    body {
+        @apply antialiased overflow-x-hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-display text-bv-primary;
+    }
+
+    ::selection {
+        @apply bg-bv-cta/30 text-bv-primary;
+    }
+}
+
+@layer utilities {
+    .clip-text-image {
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .text-stroke-1 {
+        -webkit-text-stroke: 1px currentColor;
+    }
+
+    .text-stroke-2 {
+        -webkit-text-stroke: 2px currentColor;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full hover:bg-gray-400 transition-colors;
+}

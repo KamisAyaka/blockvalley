@@ -24,6 +24,7 @@ export const usePhysicsCard = (cardRef, ballRef) => {
 
             // Spawn Logic: Slow Float
             const speed = 1.5;
+            // eslint-disable-next-line react-hooks/purity
             const angle = Math.random() * Math.PI * 2;
             physics.current.vel = {
                 x: Math.cos(angle) * speed,

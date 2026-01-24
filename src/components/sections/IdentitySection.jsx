@@ -1,63 +1,87 @@
-import React from 'react';
-import { Layers, Mic } from 'lucide-react';
+
+import { motion } from 'framer-motion';
+import { Layers, Mic, ShieldCheck } from 'lucide-react';
 
 const IdentitySection = () => {
     return (
-        <section id="identity" className="py-24 bg-gray-50 relative overflow-hidden">
+        <section id="identity" className="py-32 relative overflow-hidden">
             <div className="container mx-auto px-6 relative z-10">
-                <div className="text-center max-w-3xl mx-auto mb-20">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6">The Block Valley Identity</h2>
-                    <p className="text-xl text-gray-600">
-                        A Global Venture Studio focused on building, scaling, and institutionalizing the next generation of digital economies.
-                    </p>
+
+                {/* Section Header - Asymmetric */}
+                <div className="mb-24 flex flex-col items-start w-full md:w-2/3">
+                    <motion.span
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        className="text-bv-cta font-bold tracking-widest uppercase mb-4"
+                    >
+                        Who We Are
+                    </motion.span>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="text-6xl md:text-8xl font-display font-bold text-bv-primary leading-[0.9] tracking-tighter"
+                    >
+                        THE IDENTITY <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-bv-cta to-purple-500 opacity-80">MATRIX.</span>
+                    </motion.h2>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8">
-                    <div className="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-blue-500 hover:-translate-y-2 transition-transform duration-300 interactive-hover">
-                        <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
-                            <Layers className="text-blue-600 w-7 h-7" />
-                        </div>
-                        <h3 className="text-2xl font-bold mb-4">Venture Studio</h3>
-                        <p className="text-gray-600">Architecting new financial and technological systems from the ground up.</p>
-                    </div>
+                {/* Organic Layout - Grid-based for safety but offsets for style */}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-y-0 w-full">
 
-                    <div className="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-pink-500 hover:-translate-y-2 transition-transform duration-300 interactive-hover">
-                        <div className="w-14 h-14 bg-pink-100 rounded-full flex items-center justify-center mb-6">
-                            <Mic className="text-pink-600 w-7 h-7" />
+                    {/* Card 1: Venture Studio - Left */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                        className="md:col-span-5 md:col-start-1 bg-white/60 backdrop-blur-xl p-10 rounded-[3rem] shadow-2xl shadow-bv-primary/5 hover:bg-white transition-colors border border-white/40 group z-20"
+                    >
+                        <div className="w-16 h-16 bg-bv-cta/10 rounded-full flex items-center justify-center mb-6 text-bv-cta group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500">
+                            <Layers size={32} />
                         </div>
-                        <h3 className="text-2xl font-bold mb-4">Influence Engine</h3>
-                        <p className="text-gray-600">Enabling global influence through media, community, and powerful narrative construction.</p>
-                    </div>
+                        <h3 className="text-3xl font-display font-bold mb-4 text-bv-primary">Venture Studio</h3>
+                        <p className="text-bv-secondary leading-relaxed text-lg">Architecting new financial and technological systems from the ground up. We don&apos;t just invest; we build the infrastructure.</p>
+                    </motion.div>
 
-                    <div className="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-green-500 hover:-translate-y-2 transition-transform duration-300 interactive-hover">
-                        <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-6">
-                            <Layers className="text-green-600 w-7 h-7" />
+                    {/* Card 2: Influence Engine - Right & Lower */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.4 }}
+                        className="md:col-span-6 md:col-start-7 md:mt-32 bg-bv-cta p-12 rounded-[3rem] shadow-2xl z-10 text-white transform md:rotate-2 hover:rotate-0 transition-transform duration-500 relative"
+                    >
+                        <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mb-6 text-white">
+                            <Mic size={32} />
                         </div>
-                        <h3 className="text-2xl font-bold mb-4">Legal-First Web3</h3>
-                        <p className="text-gray-600">Regulatory intelligence meets DeFi architecture. Building compliant, lasting systems.</p>
-                    </div>
+                        <h3 className="text-4xl font-display font-bold mb-4">Influence Engine</h3>
+                        <p className="text-white/90 leading-relaxed text-xl font-medium">Enabling global influence through media, community, and powerful narrative construction. We amplify the signal in the noise.</p>
+
+                        {/* Decorative Blur behind Pink Card */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-bv-cta/30 rounded-full blur-[60px] -z-10"></div>
+                    </motion.div>
+
+                    {/* Card 3: Legal-First - Center/Left & Even Lower to tuck */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.6 }}
+                        className="md:col-span-5 md:col-start-3 md:-mt-12 bg-white/60 backdrop-blur-xl p-10 rounded-[3rem] shadow-xl hover:bg-white transition-colors border-l-8 border-emerald-500 border-t border-r border-b border-t-white/40 border-r-white/40 border-b-white/40 z-30 relative"
+                    >
+                        <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-6 text-emerald-600">
+                            <ShieldCheck size={32} />
+                        </div>
+                        <h3 className="text-2xl font-display font-bold mb-4 text-bv-primary">Legal-First Web3</h3>
+                        <p className="text-bv-secondary leading-relaxed">Regulatory intelligence meets DeFi architecture. Building compliant, lasting systems.</p>
+                    </motion.div>
+
                 </div>
 
-                <div className="mt-20 bg-black text-white rounded-3xl p-10 md:p-16 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full filter blur-3xl opacity-30 translate-x-1/2 -translate-y-1/2"></div>
-
-                    <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-10">
-                        <div className="flex-1">
-                            <h3 className="text-3xl font-bold mb-4">Explorers & Operators</h3>
-                            <p className="text-gray-300 text-lg">
-                                We need both. <span className="text-white font-bold">Explorers</span> open new frontiers with curiosity and insight.
-                                <span className="text-white font-bold"> Operators</span> build lasting systems with precision and risk control.
-                            </p>
-                        </div>
-                        <div className="flex items-center space-x-4 text-2xl font-bold opacity-80">
-                            <span>Dreamers</span>
-                            <span className="text-pink-500">×</span>
-                            <span>Builders</span>
-                            <span className="text-blue-500">×</span>
-                            <span>Executors</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
     );

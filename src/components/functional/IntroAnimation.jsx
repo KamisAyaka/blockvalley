@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 // Note: phrases are now passed in or imported. Let's import them to be self-contained or pass as props.
 // The original code defined phrases inside. For better reusability, I'll import them from data.
 import { phrases } from '@/data';

@@ -1,57 +1,101 @@
-import React from 'react';
+
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
+import JellyButton from '@/components/ui/JellyButton';
 
 const ValleyCastSection = () => {
+    const { scrollYProgress } = useScroll();
+    const x = useTransform(scrollYProgress, [0, 1], [0, -100]);
+
     return (
-        <section id="valleycast" className="py-24 bg-black text-white overflow-hidden relative">
-            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }}></div>
+        <section id="valleycast" className="py-32 bg-bv-primary text-white relative overflow-hidden">
+
+            {/* Dynamic Background Text Texture - Reduced opacity for subtle effect */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-[0.03] pointer-events-none select-none">
+                <motion.div style={{ x }} className="whitespace-nowrap text-[20vw] font-display font-black leading-none text-white uppercase">
+                    ValleyCast ValleyCast ValleyCast ValleyCast
+                </motion.div>
+                <motion.div style={{ x: useTransform(scrollYProgress, [0, 1], [-200, 0]) }} className="whitespace-nowrap text-[20vw] font-display font-black leading-none text-white uppercase mt-10">
+                    Listen Now Listen Now Listen Now
+                </motion.div>
+            </div>
 
             <div className="container mx-auto px-6 relative z-10">
-                <div className="flex flex-col lg:flex-row items-center gap-16">
+                <div className="flex flex-col lg:flex-row items-center gap-20">
+
+                    {/* Content */}
                     <div className="lg:w-1/2">
-                        <div className="flex items-center space-x-3 mb-6">
-                            <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-                            <span className="text-red-500 font-mono text-sm tracking-widest uppercase">Live on Air</span>
+                        <div className="flex items-center space-x-3 mb-8">
+                            <span className="relative flex h-3 w-3">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-bv-cta opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-3 w-3 bg-bv-cta"></span>
+                            </span>
+                            <span className="text-bv-cta font-mono text-sm tracking-widest uppercase">Live on Air</span>
                         </div>
-                        <h2 className="text-5xl md:text-7xl font-bold mb-8 leading-none tracking-tight">
-                            Valley<span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">Cast</span>
+
+                        <h2 className="text-6xl md:text-8xl font-display font-black mb-8 leading-none tracking-tighter">
+                            VALLEY
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-bv-cta to-purple-500 block">CAST.</span>
                         </h2>
-                        <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                            Not just a podcast. BV's global influence engine. We decode AI, Web3, Global Macro shifts, and the bridges between East & West.
+
+                        <p className="text-2xl text-gray-300 mb-10 leading-relaxed font-light">
+                            Not just a podcast. <strong className="text-white font-medium">BV&apos;s global influence engine.</strong> <br />
+                            Decoding AI, Web3, and the bridges between East & West.
                         </p>
 
-                        <div className="space-y-4 mb-10">
+                        <div className="space-y-4 mb-12">
                             {['AI x Web3 Narratives', 'RWA Deep Dives', 'Founder Mental Models'].map((tag, i) => (
-                                <div key={i} className="flex items-center space-x-4">
-                                    <ArrowRight className="text-pink-500 w-5 h-5" />
-                                    <span className="text-lg font-medium">{tag}</span>
+                                <div key={i} className="flex items-center space-x-4 group cursor-default">
+                                    <ArrowRight className="text-bv-cta w-6 h-6 group-hover:translate-x-2 transition-transform" />
+                                    <span className="text-xl font-medium text-gray-200 group-hover:text-white transition-colors">{tag}</span>
                                 </div>
                             ))}
                         </div>
 
-                        <button className="bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-gray-200 transition-colors flex items-center interactive-hover">
-                            <Play className="w-5 h-5 mr-3 fill-current" /> Listen Now
-                        </button>
+                        <JellyButton className="px-8 py-4 bg-white text-bv-primary rounded-full font-bold text-lg hover:bg-white/90 shadow-lg shadow-white/10" icon={Play}>
+                            Listen Now
+                        </JellyButton>
                     </div>
 
-                    <div className="lg:w-1/2 relative">
-                        <div className="relative z-10 bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-1 border border-gray-700 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500 interactive-hover">
-                            {/* Replace the dynamic sound-wave placeholder with the VALLEYCAST image from media/public */}
-                            <div className="bg-black rounded-2xl overflow-hidden aspect-video relative flex items-center justify-center group">
-                                {/* ValleyCast: static poster/image (no play overlay) */}
-                                <img src="/VALLEYCAST8AM2.png" alt="ValleyCast Latest Episode" className="w-full h-full object-cover object-right" />
-                            </div>
-                            <div className="p-6">
-                                <div className="flex justify-between items-center mb-2">
-                                    <h3 className="text-xl font-bold">Latest Episode: The Cognition Network</h3>
-                                    <span className="text-gray-400 text-sm">42:15</span>
+                    {/* Player Visual - Deep Glassmorphism */}
+                    <div className="lg:w-1/2 relative w-full">
+                        <motion.div
+                            whileHover={{ scale: 1.02, rotate: -1 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                            className="relative z-10 bg-white/5 backdrop-blur-2xl rounded-[2.5rem] p-3 border border-white/10 shadow-2xl shadow-black/50"
+                        >
+                            <div className="bg-black/50 rounded-[2rem] overflow-hidden aspect-video relative group cursor-pointer">
+                                <img src="/VALLEYCAST8AM2.png" alt="ValleyCast" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-bv-primary/80 to-transparent"></div>
+
+                                {/* Play Overlay */}
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 group-hover:scale-110 transition-transform duration-300 shadow-xl">
+                                        <Play className="w-8 h-8 text-white fill-white ml-1" />
+                                    </div>
                                 </div>
-                                <p className="text-gray-400 text-sm">Exploring how AI agents and human operators merge to form new intelligence nodes.</p>
                             </div>
-                        </div>
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-gray-800 rounded-full -z-0"></div>
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] border border-gray-900 rounded-full -z-10"></div>
+
+                            <div className="p-8">
+                                <div className="flex justify-between items-start mb-6">
+                                    <div>
+                                        <h3 className="text-2xl font-display font-bold text-white mb-2">The Cognition Network</h3>
+                                        <p className="text-gray-400 font-sans">Ep. 42 • Featuring Zoe & Aaron</p>
+                                    </div>
+                                    <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-gray-300">42:15</span>
+                                </div>
+
+                                {/* Progress Bar */}
+                                <div className="w-full h-1 bg-white/10 rounded-full mt-4 overflow-hidden">
+                                    <div className="w-1/3 h-full bg-gradient-to-r from-bv-cta to-purple-500"></div>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* Background Glows */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-gradient-to-r from-bv-cta/30 to-purple-600/30 blur-[100px] opacity-40 -z-10 rounded-full animate-pulse-slow"></div>
                     </div>
+
                 </div>
             </div>
         </section>
